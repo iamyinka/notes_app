@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css?family=Cabin:400,500,700');
+
+html,body {
+	min-height: 100%;
+	position: relative;
+	background: linear-gradient(rgba(0, 0, 0, .4), rgba(0, 0, 0, .7)), url(../img/bg.jpg) no-repeat center center;
+	-webkit-background-size: cover;
+	background-size: cover;
+	background-attachment: fixed;
+}
+
+body {
+	font-family: 'Cabin', sans-serif;
+	font-size: 16px;
+	text-rendering: optimizeLegibility;
+	font-smoothing: antialiased;
+	box-sizing: border-box;
+	line-height: 1.5em;
+}
+
+.navbar {
+	margin-bottom: 0 !important;
+}
+
+.hero {
+	color: #fff;
+	position: relative;
+	min-height: 35em;
+}
+
+.intro {
+	position: absolute;
+	top: 25%;
+	left: 15%;
+	text-align: center;
+	opacity: .87;
+}
+
+.intro h1 {
+	font-size: 4em;
+}
+
+.intro p {
+	font-size: 1.5em;
+}
+
+
+.btn-custom {
+	border: 2px solid #007bff;
+	color: #fff;
+	opacity: 1;
+}
+
+.btn-custom:hover {
+	border: 1px solid #fff;
+	color: #fff;
+	background-color: #007bff;
+}
+
+
+
+.note_section {
+	margin-top: 50px;
+	margin-bottom: 50px;
+	min-height: 500px;
+	width: 100%;
+	max-width: 100%;
+}
+
+.textArea {
+	margin-top: 2em;
+}
+
+.textArea textarea {
+	width: 100%;
+	max-width: 100%;
+	min-height: 250px;
+	max-height: 250px;
+	border: 2px solid coral;
+	border-left: 15px solid coral;
+	padding: 1em 1.2em;
+	font-size: 1.3em;
+	outline: none;
+	color: coral;
+}
+
+.all_notes {
+	margin: 4em 0;
+}
+
+.note {
+	background-color: rgba(255, 255, 255, .26);
+	padding: .2em .5em;
+	border-radius: 10px;
+	color: #fff;
+}
+
+.note p small {
+	display: block;
+}
+
+.profile_section {
+	min-height: 500px;
+}
+
+.profile {
+	margin-top: 5em;
+	color: #fff;
+}
+
+.profile h2 {
+	text-align: center;
+}
+
+.profile tr {
+	cursor: pointer;
+}
+
+/*#del_note, #all_done {
+	display: none;
+}*/
+
+/*
+
+===============================
+					Footer
+===============================
+
+*/
+
+
+footer {
+	text-align: center;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	color: #fff;
+	/*background-color: coral;*/
+}
