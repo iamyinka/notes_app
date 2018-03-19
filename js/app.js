@@ -17,7 +17,7 @@ $(document).ready(function($) {
 			dataType: '',
 			data: dataToPost,
 		})
-		
+
 		// If Ajax Call Successful
 		.done(function(data) {
 			if(data) {
@@ -34,4 +34,39 @@ $(document).ready(function($) {
 		
 		
 	});
+
+
+	// LOG IN FORM
+	$('#loginForm1').submit(function(event) {
+		/* Act on the event */
+		event.preventDefault();
+
+		var loginData = $(this).serializeArray();
+
+		// console.log(loginData);
+
+		$.ajax({
+			url: 'login.php',
+			type: 'POST',
+			dataType: '',
+			data: loginData,
+		})
+		.done(function(data) {
+			if(data == 'success'){
+				$('#loginMsg').html(data);
+				window.location = 'mainpage.php';
+				console.log("success");
+			} else {
+				$('#loginMsg').html(data);
+			}
+		})
+		.fail(function() {
+			console.log("error");
+		})
+		// .always(function() {
+		// 	console.log("complete");
+		// });
+		
+	});
+
 });

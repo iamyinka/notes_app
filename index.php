@@ -95,7 +95,7 @@
 										<input type="password" class="form-control" id="pwd2" name="pwd2" placeholder="Enter Password Again">
 									</fieldset>
 
-									<input type="submit" class="btn btn-primary" value="Sign Up">
+									<input type="submit" class="btn btn-primary" value="Sign Up" name="submit">
 								</form>
 							</div>
 							<div class="modal-footer">
@@ -123,7 +123,7 @@
 								<div id="loginMsg">
 									<!-- Log In Alert Messages Here -->
 								</div>
-								<form>
+								<form method="post" id="loginForm1">
 									<fieldset class="form-group">
 										<label for="login_username">Username</label>
 										<input type="text" class="form-control" id="login_username" name="login_username" placeholder="Enter Username">
@@ -131,7 +131,7 @@
 
 									<fieldset class="form-group">
 										<label for="login_pwd">Password</label>
-										<input type="text" class="form-control" id="login_pwd" name="login_pwd" placeholder="Enter Password">
+										<input type="password" class="form-control" id="login_pwd" name="login_pwd" placeholder="Enter Password">
 									</fieldset>
 
 									<div class="checkbox">
@@ -140,12 +140,14 @@
 										</label>
 									</div>
 
+									<input type="submit" class="btn btn-primary" value="Log In" name="login_btn" id="login_btn">
+
 								</form>
 							</div>
 							<div class="modal-footer d-flex justify-content-center">
 								<a href="#" data-dismiss="modal" data-target="#forgotPwdForm" data-toggle="modal">Forgot Your Password?</a>
 								<button type="button" class="btn btn-secondary" data-dismiss="modal" data-target="#signUpForm" data-toggle="modal">Sign Up</button>
-								<button type="button" class="btn btn-primary">Log In</button>
+								
 							</div>
 						</div><!-- /.modal-content -->
 					</div><!-- /.modal-dialog -->
