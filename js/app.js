@@ -53,7 +53,6 @@ $(document).ready(function($) {
 		})
 		.done(function(data) {
 			if(data == 'success'){
-				$('#loginMsg').html(data);
 				window.location = 'mainpage.php';
 				console.log("success");
 			} else {
@@ -61,11 +60,68 @@ $(document).ready(function($) {
 			}
 		})
 		.fail(function() {
+			$('#loginMsg').html("<div class='alert alert-danger'> There was an error with the AJAX call. Please try again later. </div>");
 			console.log("error");
 		})
 		// .always(function() {
 		// 	console.log("complete");
 		// });
+		
+	});
+
+
+	// FORGOT PASSWORD FORM
+
+	$('#forgotPwdForm1').submit(function(event) {
+		/* Act on the event */
+		event.preventDefault();
+
+		var dataToPost = $(this).serializeArray();
+
+		$.ajax({
+			url: 'forgotpassword.php',
+			type: 'POST',
+			dataType: '',
+			data: dataToPost,
+		})
+		.done(function(data) {
+			$('#forgotPwdMsg').html(data);
+			console.log("success");
+		})
+		.fail(function() {
+			console.log("error");
+		})
+		.always(function() {
+			console.log("complete");
+		});
+		
+	});
+
+
+	// RESET PASSWORD FORM
+
+	$('#resetPwdForm').submit(function(event) {
+		/* Act on the event */
+		event.preventDefault();
+
+		var dataToPost = $(this).serializeArray();
+
+		$.ajax({
+			url: 'storeresetpassword.php',
+			type: 'POST',
+			dataType: '',
+			data: dataToPost,
+		})
+		.done(function(data) {
+			$('#resetPwdFormMsg').html(data);
+			console.log("success");
+		})
+		.fail(function() {
+			console.log("error");
+		})
+		.always(function() {
+			console.log("complete");
+		});
 		
 	});
 

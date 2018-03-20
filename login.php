@@ -1,63 +1,56 @@
-<?php
+<?php  
 session_start();
 
 include 'db/db.php';
 
-$login_email = $_POST['login_username'];
-$login_pwd = $_POST['login_pwd'];
+$email = $_POST['login_email'];
+$password = $_POST['login_pwd'];
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$errors = '';
 	$missing_email = '<p>Email field cannot be blank</p>';
 	$missing_pwd = '<p>Password field cannot be blank</p>';
 	$invalid_email = '<p>Sorry! The email address is not registered. Please <a href="signup.php">Register</a> first. </p>';
-	$wrong_pwd = '<p>Wrong Email &amp; Password combination. Please ensure you typed in the correct password.</p>';
+	$wrong_pwd = '<p>Wrong Email &amp; Password combination. Please ensure you typed in the correct login details.</p>';
 
-	if (empty($login_email)) {
+	if (empty($email)) {
 		$errors .= $missing_email;
 	} else {
-		$login_email = filter_var($login_email, FILTER_SANITIZE_EMAIL);
+		$email = filter_var($email, FILTER_SANITIZE_EMAIL);
 	}
 
-	if (empty($login_pwd)) {
+	if (empty($password)) {
 		$errors .= $missing_pwd;
+	} else {
+		$password = filter_var($password, FILTER_SANITIZE_STRING);
 	}
 
 	if ($errors) {
 		$result_message = "<div class='alert alert-danger'>{$errors}</div>";
 		echo $result_message;
-	}
-
+	} 
 	else {
-		$login_email = mysqli_real_escape_string($link, $login_email);
-		$login_pwd = mysqli_real_escape_string($link, $login_pwd);
-		$login_pwd = hash('sha256', $login_pwd);
+		$email = mysqli_real_escape_string($link, $email);
+		$password = mysqli_real_escape_string($link, $password);
+		$password = hash('sha256', $password);
 
-		$sql = "SELECT * FROM users WHERE activation = 'activated'";
+		$sql = "SELECT * FROM users WHERE email = '$email' AND password = '$password' AND activation = 'activated'";
 		$result = mysqli_query($link, $sql);
 
-		while ($row = mysqli_fetch_array($result)) {
-		    if ($login_email !== $row['email']) {
-		    	echo "<div class='alert alert-danger'>{$invalid_email}</div>";
-		    } elseif ($login_pwd !== $row['password']) {
-		    	echo "<div class='alert alert-danger'>{$wrong_pwd}</div>";
-		    } else {
-		    	$_SESSION['user_id'] = $row['id'];
-		    	$_SESSION['username'] = $row['username'];
-		    	$_SESSION['email'] = $row['email'];
+		if (mysqli_num_rows($result) === 0) {
+			echo "<div class='alert alert-danger'>{$wrong_pwd}</div>";
+		} else {
+			$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
-		    	if (!isset($_POST['rememberme'])) {
-		    		echo 'success';
-		    	} else {
+			$_SESSION['username'] = $row['username'];
+	    $_SESSION['email'] = $row['email'];
+	    $_SESSION['password'] = $row['password'];
+	    $_SESSION['user_id'] = $row['id'];
 
-		    	}
-		    }
+	    echo 'success';
 		}
-
 	}
-	
-
-	
 }
+
 
 ?>

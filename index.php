@@ -1,3 +1,16 @@
+<?php  
+
+session_start();
+
+if (!isset($_SESSION['username']) || $_GET['logout'] == 1) {
+	session_destroy();
+} else {
+	header('Location: mainpage.php');
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -14,14 +27,14 @@
 
 				        
 		<nav class="navbar navbar-expand-md navbar-dark bg-primary mb-4">
-			<a class="navbar-brand" href="#">Writer's App</a>
+			<a class="navbar-brand" href="./">Writer's App</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarCollapse">
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item active">
-						<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+						<a class="nav-link" href="./">Home <span class="sr-only">(current)</span></a>
 					</li>
 					<!-- <li class="nav-item">
 						<a class="nav-link" href="#">Link</a>
@@ -125,8 +138,8 @@
 								</div>
 								<form method="post" id="loginForm1">
 									<fieldset class="form-group">
-										<label for="login_username">Username</label>
-										<input type="text" class="form-control" id="login_username" name="login_username" placeholder="Enter Username">
+										<label for="login_username">Email</label>
+										<input type="email" class="form-control" id="login_email" name="login_email" placeholder="Enter Email">
 									</fieldset>
 
 									<fieldset class="form-group">
@@ -171,17 +184,17 @@
 								<div id="forgotPwdMsg">
 									<!-- Forgot Password Alert Messages Here -->
 								</div>
-								<form>
+								<form method="POST" id="forgotPwdForm1">
 									<fieldset class="form-group">
 										<label for="forgetPwdEmail">Email</label>
 										<input type="email" class="form-control" id="forgetPwdEmail" name="forgetPwdEmail" placeholder="Enter Your Email">
 									</fieldset>
-
+									<input type="submit" class="btn btn-primary" value="Send My Password">
 								</form>
 							</div>
 							<div class="modal-footer d-flex justify-content-center">
 								<button type="button" class="btn btn-secondary" data-dismiss="modal" data-target="#loginForm" data-toggle="modal">Log in</button>
-								<button type="button" class="btn btn-primary">Send My Password</button>
+								
 							</div>
 						</div><!-- /.modal-content -->
 					</div><!-- /.modal-dialog -->
